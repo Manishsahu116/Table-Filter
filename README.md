@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # DataTable Project
 
 ## Overview
@@ -53,6 +53,4 @@ This project implements a responsive DataTable component using React, Vite, and 
  - Group data using the layer icon.
 
 
-=======
-# Table-Filter
->>>>>>> c1414542dc95cf694b1f22da6acaa48b72c45c5d
+
