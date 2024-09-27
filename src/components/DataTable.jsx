@@ -221,75 +221,76 @@ const DataTable = () => {
                 </div>
             </div>
 
-            <table className="min-w-full border border-gray-200">
-                <thead className="bg-gray-100">
-                    <tr>
-                        {columnsVisibility.name && (
-                            <th className={styles.tableHeader} onClick={() => handleSort('name')}>
-                                Name {sortConfig.key === 'name' && (sortConfig.direction === 'asc' ? <FaArrowUp className={`inline-block ml-1 ${sortConfig.direction === 'asc' ? 'text-gray-800' : 'text-gray-500'}`} /> : <FaArrowDown className={`inline-block ml-1 ${sortConfig.direction === 'desc' ? 'text-gray-800' : 'text-gray-500'}`} />)}
-                            </th>
-                        )}
-                        {columnsVisibility.category && (
-                            <th className={styles.tableHeader} onClick={() => handleSort('category')}>
-                                Category {sortConfig.key === 'category' && (sortConfig.direction === 'asc' ? <FaArrowUp className={`inline-block ml-1 ${sortConfig.direction === 'asc' ? 'text-gray-800' : 'text-gray-500'}`} /> : <FaArrowDown className={`inline-block ml-1 ${sortConfig.direction === 'desc' ? 'text-gray-800' : 'text-gray-500'}`} />)}
-                            </th>
-                        )}
-                        {columnsVisibility.subcategory && (
-                            <th className={styles.tableHeader} onClick={() => handleSort('subcategory')}>
-                                Subcategory {sortConfig.key === 'subcategory' && (sortConfig.direction === 'asc' ? <FaArrowUp className={`inline-block ml-1 ${sortConfig.direction === 'asc' ? 'text-gray-800' : 'text-gray-500'}`} /> : <FaArrowDown className={`inline-block ml-1 ${sortConfig.direction === 'desc' ? 'text-gray-800' : 'text-gray-500'}`} />)}
-                            </th>
-                        )}
-                        {columnsVisibility.price && (
-                            <th className={styles.tableHeader} onClick={() => handleSort('price')}>
-                                Price {sortConfig.key === 'price' && (sortConfig.direction === 'asc' ? <FaArrowUp className={`inline-block ml-1 ${sortConfig.direction === 'asc' ? 'text-gray-800' : 'text-gray-500'}`} /> : <FaArrowDown className={`inline-block ml-1 ${sortConfig.direction === 'desc' ? 'text-gray-800' : 'text-gray-500'}`} />)}
-                            </th>
-                        )}
-                        {columnsVisibility.createdAt && (
-                            <th className={styles.tableHeader} onClick={() => handleSort('createdAt')}>
-                                Created At {sortConfig.key === 'createdAt' && (sortConfig.direction === 'asc' ? <FaArrowUp className={`inline-block ml-1 ${sortConfig.direction === 'asc' ? 'text-gray-800' : 'text-gray-500'}`} /> : <FaArrowDown className={`inline-block ml-1 ${sortConfig.direction === 'desc' ? 'text-gray-800' : 'text-gray-500'}`} />)}
-                            </th>
-                        )}
-                        {columnsVisibility.updatedAt && (
-                            <th className={styles.tableHeader} onClick={() => handleSort('updatedAt')}>
-                                Updated At {sortConfig.key === 'updatedAt' && (sortConfig.direction === 'asc' ? <FaArrowUp className={`inline-block ml-1 ${sortConfig.direction === 'asc' ? 'text-gray-800' : 'text-gray-500'}`} /> : <FaArrowDown className={`inline-block ml-1 ${sortConfig.direction === 'desc' ? 'text-gray-800' : 'text-gray-500'}`} />)}
-                            </th>
-                        )}
-                    </tr>
-                </thead>
-                <tbody>
-                    {Array.isArray(filteredData) && filteredData.length > 0 && filteredData[0].group
-                        ? filteredData.slice(indexOfFirstResult, indexOfLastResult).map((group, index) => (
-                            <React.Fragment key={index}>
-                                {/* Render group header */}
-                                <tr className="bg-gray-200">
-                                    <td colSpan={6} className={styles.tableCell}>{group.group}</td>
-                                </tr>
-                                {/* Render group items */}
-                                {group.items.map((item, idx) => (
-                                    <tr key={idx}>
-                                        {columnsVisibility.name && <td className={styles.tableCell}>{item.name}</td>}
-                                        {columnsVisibility.category && <td className={styles.tableCell}>{item.category}</td>}
-                                        {columnsVisibility.subcategory && <td className={styles.tableCell}>{item.subcategory}</td>}
-                                        {columnsVisibility.price && <td className={styles.tableCell}>{item.price}</td>}
-                                        {columnsVisibility.createdAt && <td className={styles.tableCell}>{moment(item.createdAt).format('DD-MMM-YYYY HH:mm')}</td>}
-                                        {columnsVisibility.updatedAt && <td className={styles.tableCell}>{moment(item.updatedAt).format('DD-MMM-YYYY HH:mm')}</td>}
+            <div className="overflow-x-auto">
+                <table className="min-w-full border border-gray-200">
+                    <thead className="bg-gray-100">
+                        <tr>
+                            {columnsVisibility.name && (
+                                <th className={`${styles.tableHeader} text-sm sm:text-base md:text-lg p-2`} onClick={() => handleSort('name')}>
+                                    Name {sortConfig.key === 'name' && (sortConfig.direction === 'asc' ? <FaArrowUp className={`inline-block ml-1 ${sortConfig.direction === 'asc' ? 'text-gray-800' : 'text-gray-500'}`} /> : <FaArrowDown className={`inline-block ml-1 ${sortConfig.direction === 'desc' ? 'text-gray-800' : 'text-gray-500'}`} />)}
+                                </th>
+                            )}
+                            {columnsVisibility.category && (
+                                <th className={`${styles.tableHeader} text-sm sm:text-base md:text-lg p-2`} onClick={() => handleSort('category')}>
+                                    Category {sortConfig.key === 'category' && (sortConfig.direction === 'asc' ? <FaArrowUp className={`inline-block ml-1 ${sortConfig.direction === 'asc' ? 'text-gray-800' : 'text-gray-500'}`} /> : <FaArrowDown className={`inline-block ml-1 ${sortConfig.direction === 'desc' ? 'text-gray-800' : 'text-gray-500'}`} />)}
+                                </th>
+                            )}
+                            {columnsVisibility.subcategory && (
+                                <th className={`${styles.tableHeader} text-sm sm:text-base md:text-lg p-2`} onClick={() => handleSort('subcategory')}>
+                                    Subcategory {sortConfig.key === 'subcategory' && (sortConfig.direction === 'asc' ? <FaArrowUp className={`inline-block ml-1 ${sortConfig.direction === 'asc' ? 'text-gray-800' : 'text-gray-500'}`} /> : <FaArrowDown className={`inline-block ml-1 ${sortConfig.direction === 'desc' ? 'text-gray-800' : 'text-gray-500'}`} />)}
+                                </th>
+                            )}
+                            {columnsVisibility.price && (
+                                <th className={`${styles.tableHeader} text-sm sm:text-base md:text-lg p-2`} onClick={() => handleSort('price')}>
+                                    Price {sortConfig.key === 'price' && (sortConfig.direction === 'asc' ? <FaArrowUp className={`inline-block ml-1 ${sortConfig.direction === 'asc' ? 'text-gray-800' : 'text-gray-500'}`} /> : <FaArrowDown className={`inline-block ml-1 ${sortConfig.direction === 'desc' ? 'text-gray-800' : 'text-gray-500'}`} />)}
+                                </th>
+                            )}
+                            {columnsVisibility.createdAt && (
+                                <th className={`${styles.tableHeader} text-sm sm:text-base md:text-lg p-2`} onClick={() => handleSort('createdAt')}>
+                                    Created At {sortConfig.key === 'createdAt' && (sortConfig.direction === 'asc' ? <FaArrowUp className={`inline-block ml-1 ${sortConfig.direction === 'asc' ? 'text-gray-800' : 'text-gray-500'}`} /> : <FaArrowDown className={`inline-block ml-1 ${sortConfig.direction === 'desc' ? 'text-gray-800' : 'text-gray-500'}`} />)}
+                                </th>
+                            )}
+                            {columnsVisibility.updatedAt && (
+                                <th className={`${styles.tableHeader} text-sm sm:text-base md:text-lg p-2`} onClick={() => handleSort('updatedAt')}>
+                                    Updated At {sortConfig.key === 'updatedAt' && (sortConfig.direction === 'asc' ? <FaArrowUp className={`inline-block ml-1 ${sortConfig.direction === 'asc' ? 'text-gray-800' : 'text-gray-500'}`} /> : <FaArrowDown className={`inline-block ml-1 ${sortConfig.direction === 'desc' ? 'text-gray-800' : 'text-gray-500'}`} />)}
+                                </th>
+                            )}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {Array.isArray(filteredData) && filteredData.length > 0 && filteredData[0].group
+                            ? filteredData.slice(indexOfFirstResult, indexOfLastResult).map((group, index) => (
+                                <React.Fragment key={index}>
+                                    {/* Render group header */}
+                                    <tr className="bg-gray-200">
+                                        <td colSpan={6} className={`${styles.tableCell} p-2 text-sm sm:text-base md:text-lg`}>{group.group}</td>
                                     </tr>
-                                ))}
-                            </React.Fragment>
-                        ))
-                        : currentResults.map((item, index) => (
-                            <tr key={index}>
-                                {columnsVisibility.name && <td className={styles.tableCell}>{item.name}</td>}
-                                {columnsVisibility.category && <td className={styles.tableCell}>{item.category}</td>}
-                                {columnsVisibility.subcategory && <td className={styles.tableCell}>{item.subcategory}</td>}
-                                {columnsVisibility.price && <td className={styles.tableCell}>{item.price}</td>}
-                                {columnsVisibility.createdAt && <td className={styles.tableCell}>{moment(item.createdAt).format('DD-MMM-YYYY HH:mm')}</td>}
-                                {columnsVisibility.updatedAt && <td className={styles.tableCell}>{moment(item.updatedAt).format('DD-MMM-YYYY HH:mm')}</td>}
-                            </tr>
-                        ))}
-                </tbody>
-            </table>
-
+                                    {/* Render group items */}
+                                    {group.items.map((item, idx) => (
+                                        <tr key={idx}>
+                                            {columnsVisibility.name && <td className={`${styles.tableCell} p-2 text-sm sm:text-base md:text-lg`}>{item.name}</td>}
+                                            {columnsVisibility.category && <td className={`${styles.tableCell} p-2 text-sm sm:text-base md:text-lg`}>{item.category}</td>}
+                                            {columnsVisibility.subcategory && <td className={`${styles.tableCell} p-2 text-sm sm:text-base md:text-lg`}>{item.subcategory}</td>}
+                                            {columnsVisibility.price && <td className={`${styles.tableCell} p-2 text-sm sm:text-base md:text-lg`}>{item.price}</td>}
+                                            {columnsVisibility.createdAt && <td className={`${styles.tableCell} p-2 text-sm sm:text-base md:text-lg`}>{moment(item.createdAt).format('DD-MMM-YYYY HH:mm')}</td>}
+                                            {columnsVisibility.updatedAt && <td className={`${styles.tableCell} p-2 text-sm sm:text-base md:text-lg`}>{moment(item.updatedAt).format('DD-MMM-YYYY HH:mm')}</td>}
+                                        </tr>
+                                    ))}
+                                </React.Fragment>
+                            ))
+                            : currentResults.map((item, index) => (
+                                <tr key={index}>
+                                    {columnsVisibility.name && <td className={`${styles.tableCell} p-2 text-sm sm:text-base md:text-lg`}>{item.name}</td>}
+                                    {columnsVisibility.category && <td className={`${styles.tableCell} p-2 text-sm sm:text-base md:text-lg`}>{item.category}</td>}
+                                    {columnsVisibility.subcategory && <td className={`${styles.tableCell} p-2 text-sm sm:text-base md:text-lg`}>{item.subcategory}</td>}
+                                    {columnsVisibility.price && <td className={`${styles.tableCell} p-2 text-sm sm:text-base md:text-lg`}>{item.price}</td>}
+                                    {columnsVisibility.createdAt && <td className={`${styles.tableCell} p-2 text-sm sm:text-base md:text-lg`}>{moment(item.createdAt).format('DD-MMM-YYYY HH:mm')}</td>}
+                                    {columnsVisibility.updatedAt && <td className={`${styles.tableCell} p-2 text-sm sm:text-base md:text-lg`}>{moment(item.updatedAt).format('DD-MMM-YYYY HH:mm')}</td>}
+                                </tr>
+                            ))}
+                    </tbody>
+                </table>
+            </div>
             <div className={styles.pagination}>
                 <button
                     onClick={() => setCurrentPage(currentPage - 1)}
@@ -314,11 +315,11 @@ const DataTable = () => {
             {showColumnSlider && (
                 <>
                     <div className={styles.overlay} onClick={() => setShowColumnSlider(false)}></div>
-                    <div className={`${styles.slider} ${showColumnSlider ? styles.sliderVisible : styles.sliderHidden}`}>
-                        <h4 className="font-semibold mb-4">Show/Hide Columns</h4>
+                    <div className={`${styles.slider} ${showColumnSlider ? styles.sliderVisible : styles.sliderHidden} p-4 md:p-6`}>
+                        <h4 className="font-semibold mb-4 text-lg">Show/Hide Columns</h4>
                         {Object.keys(columnsVisibility).map((column) => (
                             <div key={column} className="flex items-center justify-between mb-2">
-                                <span className="capitalize">{column}</span>
+                                <span className="capitalize text-sm md:text-base">{column}</span>
                                 <label className={styles.toggle}>
                                     <input
                                         type="checkbox"
@@ -333,57 +334,56 @@ const DataTable = () => {
                     </div>
                 </>
             )}
+
             {/* Grouping Slider */}
             {showGroupingSlider && (
                 <>
                     <div className={styles.overlay} onClick={() => setShowGroupingSlider(false)}></div>
-                    <div className={`${styles.slider} ${showGroupingSlider ? styles.sliderVisible : styles.sliderHidden}`}>
-                        <h4 className="font-semibold mb-4">Group By</h4>
+                    <div className={`${styles.slider} ${showGroupingSlider ? styles.sliderVisible : styles.sliderHidden} p-4 md:p-6`}>
+                        <h4 className="font-semibold mb-4 text-lg">Group By</h4>
                         <div className="flex items-center justify-between mb-2">
-                            <span>Category</span>
-                            <label className={styles.toggle}>
-                                <input className='h-5 w-6 cursor-pointer'
+                            <span className="text-sm md:text-base">Category</span>
+                                <input
+                                    className='h-5 w-6 cursor-pointer accent-blue-600'
                                     type="radio"
                                     name="groupBy"
                                     value="category"
                                     checked={groupBy === 'category'}
                                     onChange={() => setGroupBy('category')}
                                 />
-                            </label>
                         </div>
                         <div className="flex items-center justify-between mb-2">
-                            <span>Subcategory</span>
-                            <label className={styles.toggle}>
-                                <input className='h-5 w-6 cursor-pointer'
+                            <span className="text-sm md:text-base">Subcategory</span>
+                                <input
+                                    className='h-5 w-6 cursor-pointer accent-blue-600'
                                     type="radio"
                                     name="groupBy"
                                     value="subcategory"
                                     checked={groupBy === 'subcategory'}
                                     onChange={() => setGroupBy('subcategory')}
                                 />
-                            </label>
                         </div>
                         <div className="flex items-center justify-between mb-2">
-                            <span>None</span>
-                            <label className={styles.toggle}>
-                                <input className='h-5 w-6 cursor-pointer'
+                            <span className="text-sm md:text-base">None</span>
+                                <input
+                                    className='h-5 w-6 cursor-pointer accent-blue-600'
                                     type="radio"
                                     name="groupBy"
                                     value=""
                                     checked={groupBy === ''}
                                     onChange={() => setGroupBy('')}
                                 />
-                            </label>
                         </div>
                     </div>
                 </>
             )}
+
             {/* Advanced Filter Slider */}
             {showFilterSlider && (
                 <>
                     <div className={styles.overlay} onClick={() => setShowFilterSlider(false)}></div>
-                    <div className={`${styles.slider} ${showFilterSlider ? styles.sliderVisible : styles.sliderHidden}`}>
-                        <h4 className="font-semibold mb-4">Advanced Filters 🔍</h4>
+                    <div className={`${styles.slider} ${showFilterSlider ? styles.sliderVisible : styles.sliderHidden} p-4 md:p-6`}>
+                        <h4 className="font-semibold mb-4 text-lg">Advanced Filters 🔍</h4>
 
                         {/* Fuzzy Text Search */}
                         <input
@@ -394,7 +394,7 @@ const DataTable = () => {
                             className="border rounded p-2 w-full mb-4"
                         />
 
-                        <h5>Category </h5>
+                        <h5 className="text-sm md:text-base">Category </h5>
                         <Select
                             isMulti
                             options={categoryOptions}
@@ -404,7 +404,7 @@ const DataTable = () => {
                             className="mb-4"
                         />
 
-                        <h5>Sub-Category</h5>
+                        <h5 className="text-sm md:text-base">Sub-Category</h5>
                         <Select
                             isMulti
                             options={subcategoryOptions}
@@ -415,9 +415,9 @@ const DataTable = () => {
                         />
 
                         {/* Price Range Slider */}
-                        <h5>Price Range 💸</h5>
+                        <h5 className="text-sm md:text-base">Price Range 💸</h5>
                         <div className="mb-4">
-                            <label>Price Range: {minPrice} - {maxPrice}</label>
+                            <label className="block text-sm md:text-base">Price Range: {minPrice} - {maxPrice}</label>
                             <input
                                 type="range"
                                 min="0"
@@ -437,16 +437,16 @@ const DataTable = () => {
                         </div>
 
                         {/* Date Range Picker */}
-                        <h5>Date Range 📅</h5>
+                        <h5 className="text-sm md:text-base">Date Range 📅</h5>
                         <div className="mb-4">
-                            <label>Created At (Start Date)</label>
+                            <label className="block text-sm md:text-base">Created At (Start Date)</label>
                             <input
                                 type="date"
                                 value={startDate}
                                 onChange={(e) => setStartDate(e.target.value)}
                                 className="block w-full mb-2"
                             />
-                            <label>Uodated At (End Date)</label>
+                            <label className="block text-sm md:text-base">Updated At (End Date)</label>
                             <input
                                 type="date"
                                 value={endDate}
@@ -457,8 +457,8 @@ const DataTable = () => {
                     </div>
                 </>
             )}
+
         </div>
     );
 };
-
 export default DataTable;
